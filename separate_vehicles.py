@@ -103,7 +103,6 @@ def extract_clustered_vehicles(base_img, clustered_vehicles, single_vehicle_mean
     markers = ndi.label(local_maxi)[0]
     labels = watershed(-distance, markers, mask=clustered_vehicles)
     watershed_markers = merge_labels(labels.copy())
-
     nb_vehicles = len(np.unique(watershed_markers)) - 1
     img = mark_boundaries(base_img, watershed_markers, color=[1.0, 0.0, 0.0], mode="outer")
     return img, watershed_markers, nb_vehicles
